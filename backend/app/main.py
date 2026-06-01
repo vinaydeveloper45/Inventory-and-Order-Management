@@ -47,7 +47,7 @@ async def validation_error_handler(_: Request, exc: RequestValidationError):
 
 @app.exception_handler(Exception)
 async def generic_exception_handler(_: Request, exc: Exception):
-    return JSONResponse(status_code=500, content={"message": "Internal Server Error"})
+    return JSONResponse(status_code=500, content={"message": "Internal Server Error:"})
 
 
 @app.get("/")
