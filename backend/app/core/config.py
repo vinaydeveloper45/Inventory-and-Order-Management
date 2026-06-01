@@ -4,6 +4,15 @@ from pydantic import Field
 from pydantic_settings import BaseSettings, SettingsConfigDict
 
 
+def _normalize_database_url(database_url: str) -> str:
+    normalized = database_url.strip()
+    if normalized.startswith("postgres://"):
+        return "postgresql+psycopg://" + normalized[len("postgres://"):]
+    if normalized.startswith("postgresql://"):
+        return "postgresql+psycopg://" + normalized[len("postgresql://"):]
+    return normalized
+
+
 class Settings(BaseSettings):
     model_config = SettingsConfigDict(
         env_file=".env",
@@ -29,6 +38,9 @@ class Settings(BaseSettings):
         if not self.cors_origins.strip():
             return ["http://localhost:3000"]
         return [origin.strip() for origin in self.cors_origins.split(",") if origin.strip()]
+
+    def model_post_init(self, __context) -> None:
+        self.database_url = _normalize_database_url(self.database_url)
 
 
 @lru_cache

@@ -31,4 +31,4 @@ COPY alembic.ini .
 
 EXPOSE 8000
 
-CMD ["sh", "-c", "alembic upgrade head && uvicorn app.main:app --host 0.0.0.0 --port ${BACKEND_PORT:-8000}"]
+CMD ["sh", "-c", "PORT_TO_USE=${PORT:-${BACKEND_PORT:-8000}}; alembic upgrade head && exec uvicorn app.main:app --host 0.0.0.0 --port \"$PORT_TO_USE\""]
