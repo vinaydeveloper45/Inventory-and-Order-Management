@@ -1,3 +1,11 @@
+
+<img width="1872" height="820" alt="image" src="https://github.com/user-attachments/assets/881a603f-aa61-435a-87a0-7e674e8632bf" />
+
+<img width="1903" height="682" alt="image" src="https://github.com/user-attachments/assets/93da980e-616b-4027-b545-bd076810614b" />
+
+
+
+
 # Inventory & Order Management System
 
 A production-ready full stack inventory and order management application built with FastAPI, SQLAlchemy, Alembic, PostgreSQL, React, React Router, Axios, React Hook Form, Tailwind CSS, Docker, and Docker Compose.
